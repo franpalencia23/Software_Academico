@@ -1,0 +1,112 @@
+.sensor-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); 
+    gap: 14px; 
+    margin-bottom: 28px; 
+}
+ 
+.sensor-card {
+    background: var(--card-bg); 
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    display: flex; 
+    align-items: center; 
+    gap: 14px;
+}
+
+.sensor-icon {
+    width: 42px; 
+    height: 42px;
+    border-radius: 10px;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.sensor-icon.online  { 
+    background: rgba(16,185,129,0.1); 
+    color: var(--emerald); 
+}
+
+.sensor-icon.offline { 
+    background: rgba(244,63,94,0.1);  
+    color: var(--rose); 
+}
+
+.sensor-icon.idle    { 
+    background: rgba(245,158,11,0.1); 
+    color: var(--gold); 
+}
+
+.sensor-info .s-code { 
+    font-weight: 600; 
+    font-size: 0.9rem;
+}
+
+.sensor-info .s-aula { 
+    font-size: 0.75rem; 
+    color: var(--text-muted); 
+    margin-top: 2px; 
+}
+
+.sensor-info .s-last { 
+    font-size: 0.7rem; 
+    color: var(--text-muted); 
+    margin-top: 4px; 
+}
+
+.live-row-new { 
+    animation: rowFadeIn 0.5s ease; 
+}
+
+@keyframes rowFadeIn {
+    from { background: rgba(16,185,129,0.15); }
+    to   { background: transparent; }
+}
+
+.live-badge {
+    display: inline-flex; 
+    align-items: center; 
+    gap: 6px;
+    background: rgba(16,185,129,0.1); 
+    border: 1px solid rgba(16,185,129,0.25);
+    border-radius: 20px; 
+    padding: 4px 12px;
+    font-size: 0.75rem; 
+    font-weight: 600;
+    color: var(--emerald);
+}
+
+.live-badge::before {
+    content: ''; 
+    display: block;
+    width: 7px; 
+    height: 7px; 
+    border-radius: 50%;
+    background: var(--emerald);
+    animation: pulse 1.5s infinite;
+}
+
+.manual-form {
+    background: rgba(245,158,11,0.05);
+    border: 1px solid rgba(245,158,11,0.2);
+    border-radius: var(--radius); 
+    padding: 20px; 
+    margin-bottom: 24px;
+}
+
+.filter-bar { 
+    display:flex; 
+    gap:12px; 
+    flex-wrap:wrap; 
+    align-items:flex-end; 
+    margin-bottom:16px; 
+}
+
+.filter-bar .form-group { 
+    flex:1; 
+    min-width:150px; 
+}

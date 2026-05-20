@@ -1,0 +1,60 @@
+.facul-card {
+    background: var(--card-bg); 
+    border: 1px solid var(--border);
+    border-radius: var(--radius); 
+    padding: 20px;
+    display: flex; 
+    align-items: center; 
+    gap: 16px;
+}
+
+.facul-icon {
+    width: 48px; 
+    height: 48px; 
+    border-radius: 10px;
+    background: rgba(16,185,129,0.1); 
+    color: var(--emerald);
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+
+.facul-info { 
+    flex: 1; 
+}
+
+.facul-name { 
+    font-weight: 600;
+    font-size: 0.95rem; 
+}
+
+.facul-code { 
+    font-size: 0.72rem; 
+    color: var(--text-muted); 
+    margin-top: 2px; 
+}
+
+.facul-programs { 
+    font-size: 0.8rem; 
+    margin-top: 8px; 
+    color: var(--emerald); 
+}
+
+.form-inline { 
+    display: flex; 
+    gap: 10px; 
+    align-items: flex-end; 
+    margin-bottom: 20px; 
+}
+
+.form-inline .form-group { 
+    flex: 1; 
+}
+
+.form-inline .btn { 
+    flex-shrink: 0; 
+    align-self: flex-end; 
+    height: 40px; 
+}

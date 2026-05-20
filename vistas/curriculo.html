@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Microcurrículo — Sistema Académico</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/style_curriculo.css">
+  <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
+  <link href="https://cdn.boxicons.com/3.0.8/fonts/filled/boxicons-filled.min.css" rel="stylesheet">
+  <script src="../js/curriculo.js" defer></script>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-text">Sistema Académico</div>
+    <div class="logo-sub">Plataforma de Gestión</div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section">Principal</div>
+    <a class="nav-item" href="../dashboard.html"><i class='bx bx-grid-alt'></i> Dashboard</a>
+    <div class="nav-section">Administración</div>
+    <a class="nav-item" href="usuarios.html"><i class='bx bx-group'></i> Usuarios</a>
+    <a class="nav-item" href="academico.html"><i class='bx bx-building-house'></i> Estructura Académica</a>
+    <a class="nav-item active" href="curriculo.html"><i class='bx bx-book-open'></i> Microcurrículo</a>
+    <div class="nav-section">Control</div>
+    <a class="nav-item" href="asistencia.html"><i class='bx bx-scan'></i> Asistencia &amp; Sensores <span class="nav-badge">LIVE</span></a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="user-avatar">AD</div>
+    <div class="user-info"><div class="user-name">Administrador</div><div class="user-role">Super Admin</div></div>
+    <button class="btn-logout" onclick="location.href='../index.html'"><i class='bx bx-log-out'></i></button>
+  </div>
+</aside>
+
+<div class="main-content">
+  <header class="topbar">
+    <span class="topbar-title">Módulo de <span>Microcurrículo</span></span>
+    <div class="topbar-actions">
+      <button class="btn btn-primary btn-sm" onclick="guardarCurriculo()"><i class='bx bx-save'></i> Guardar todo</button>
+      <button class="btn-icon"><i class='bx bx-bell'></i></button>
+    </div>
+  </header>
+
+  <div class="page-body">
+    <div class="page-header">
+      <h2>Microcurrículo</h2>
+      <p>Define objetivos, competencias, estrategias pedagógicas y evaluación por asignatura.</p>
+    </div>
+
+    <!-- BUSCADOR DE MATERIA -->
+    <div class="card mb-16" style="margin-bottom:24px;">
+      <div class="card-title"><i class='bx bx-search-alt'></i> Seleccionar Asignatura</div>
+      <div class="flex gap-16" style="flex-wrap:wrap;">
+        <div class="form-group" style="flex:1;min-width:200px;">
+          <label>Programa</label>
+          <select onchange="filterMaterias(this.value)">
+            <option value="">-- Todos --</option>
+            <option>Ing. de Sistemas</option>
+            <option>Administración de Empresas</option>
+            <option>Derecho</option>
+            <option>Enfermería</option>
+          </select>
+        </div>
+        <div class="form-group" style="flex:2;min-width:280px;">
+          <label>Asignatura</label>
+          <select id="select-materia" onchange="selectMateria(this.value)">
+            <option value="">-- Seleccionar Materia --</option>
+            <option value="calc">MAT-101 · Cálculo Diferencial (Ing. de Sistemas)</option>
+            <option value="prog">MAT-201 · Programación I (Ing. de Sistemas)</option>
+            <option value="web">MAT-305 · Programación Web (Ing. de Sistemas)</option>
+            <option value="gest">MAT-210 · Gestión Empresarial (Administración)</option>
+          </select>
+        </div>
+        <div class="form-group" style="flex:1;min-width:140px;">
+          <label>Docente</label>
+          <select>
+            <option>-- Asignar --</option>
+            <option>Dr. Martínez</option>
+            <option>Ing. Ramírez</option>
+            <option>Mg. Torres</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- SELECTED SUBJECT DISPLAY -->
+    <div class="selected-subject" id="selected-box" style="display:none;">
+      <i class='bx bx-book-open'></i>
+      <div class="subject-info">
+        <div class="name" id="subj-name">—</div>
+        <div class="meta" id="subj-meta">—</div>
+      </div>
+      <span class="badge badge-green" style="margin-left:auto;">Editando</span>
+    </div>
+
+    <!-- TABS DEL MICROCURRÍCULO -->
+    <div class="tabs-bar">
+      <button class="tab-btn active" onclick="switchTab('objetivos',this)"><i class='bx bx-target-lock'></i> Objetivos</button>
+      <button class="tab-btn" onclick="switchTab('evaluacion',this)"><i class='bx bx-bar-chart-alt-2'></i> Evaluación</button>
+      <button class="tab-btn" onclick="switchTab('competencias',this)"><i class='bx bx-award'></i> Competencias</button>
+      <button class="tab-btn" onclick="switchTab('pedagogia',this)"><i class='bx bx-brain'></i> Estrategias</button>
+    </div>
+
+    <!-- ── TAB: OBJETIVOS ── -->
+    <div class="tab-panel active" id="tab-objetivos">
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title"><i class='bx bx-flag'></i> Objetivo General</div>
+          <div class="form-group">
+            <label>Descripción del Objetivo General</label>
+            <textarea rows="5" placeholder="Describe el propósito central de la asignatura..."></textarea>
+          </div>
+          <hr class="divider">
+          <div class="card-title" style="margin-top:0;"><i class='bx bx-check-square'></i> Objetivos Específicos</div>
+          <div id="obj-list" class="flex flex-col gap-8" style="margin-bottom:12px;">
+            <div class="flex gap-8">
+              <input type="text" placeholder="Objetivo específico 1..." style="flex:1;">
+              <button class="btn-icon" onclick="removeObj(this)"><i class='bx bx-x'></i></button>
+            </div>
+            <div class="flex gap-8">
+              <input type="text" placeholder="Objetivo específico 2..." style="flex:1;">
+              <button class="btn-icon" onclick="removeObj(this)"><i class='bx bx-x'></i></button>
+            </div>
+          </div>
+          <button class="btn btn-secondary btn-sm" onclick="addObj()"><i class='bx bx-plus'></i> Agregar Objetivo</button>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><i class='bx bx-info-circle'></i> Información General</div>
+          <div class="form-grid">
+            <div class="form-group"><label>Justificación</label>
+              <textarea rows="4" placeholder="¿Por qué es importante esta asignatura en el plan de estudios?"></textarea>
+            </div>
+            <div class="form-group"><label>Metodología General</label>
+              <textarea rows="4" placeholder="Descripción de la metodología de enseñanza..."></textarea>
+            </div>
+            <div class="form-group"><label>Bibliografía Principal</label>
+              <textarea rows="3" placeholder="Autor (Año). Título. Editorial."></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TAB: EVALUACIÓN ── -->
+    <div class="tab-panel" id="tab-evaluacion">
+      <div class="card" style="margin-bottom:20px;">
+        <div class="card-title"><i class='bx bx-percent'></i> Distribución de Parciales</div>
+        <div class="parcial-grid">
+          <div class="parcial-card">
+            <div class="parcial-title">Primer Parcial</div>
+            <div class="parcial-pct" id="pct1-display">30%</div>
+            <div class="parcial-pct-label">Porcentaje</div>
+            <input class="pct-input" type="number" id="pct1" value="30" min="0" max="100" onchange="updateTotal()">
+          </div>
+          <div class="parcial-card">
+            <div class="parcial-title">Segundo Parcial</div>
+            <div class="parcial-pct" id="pct2-display">30%</div>
+            <div class="parcial-pct-label">Porcentaje</div>
+            <input class="pct-input" type="number" id="pct2" value="30" min="0" max="100" onchange="updateTotal()">
+          </div>
+          <div class="parcial-card">
+            <div class="parcial-title">Tercer Parcial</div>
+            <div class="parcial-pct" id="pct3-display">40%</div>
+            <div class="parcial-pct-label">Porcentaje</div>
+            <input class="pct-input" type="number" id="pct3" value="40" min="0" max="100" onchange="updateTotal()">
+          </div>
+        </div>
+        <div class="pct-total">Total: <strong id="pct-total">100%</strong></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title"><i class='bx bx-list-check'></i> Actividades de Evaluación · Parcial 1</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Actividad</th><th>%</th><th>Fecha</th><th></th></tr></thead>
+              <tbody id="eval-tbody-1">
+                <tr>
+                  <td><input type="text" placeholder="Ej: Quiz 1" style="width:100%;"></td>
+                  <td><input type="number" placeholder="10" style="width:60px;"></td>
+                  <td><input type="date"></td>
+                  <td><button class="btn-icon btn-sm" onclick="this.closest('tr').remove()"><i class='bx bx-trash'></i></button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <button class="btn btn-secondary btn-sm mt-16" onclick="addEvalRow('eval-tbody-1')"><i class='bx bx-plus'></i> Actividad</button>
+        </div>
+        <div class="card">
+          <div class="card-title"><i class='bx bx-note'></i> Criterios de Calificación</div>
+          <div class="form-group">
+            <label>Escala de Calificación</label>
+            <select><option>0.0 – 5.0</option><option>0 – 100</option><option>A / B / C / D</option></select>
+          </div>
+          <div class="form-group mt-16"><label>Nota Mínima Aprobatoria</label><input type="number" value="3.0"></div>
+          <div class="form-group mt-16"><label>Observaciones</label>
+            <textarea placeholder="Indicaciones especiales sobre la evaluación..."></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TAB: COMPETENCIAS ── -->
+    <div class="tab-panel" id="tab-competencias">
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title"><i class='bx bx-award'></i> Competencias Genéricas</div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Competencia Comunicativa</label>
+              <textarea rows="2" placeholder="Describe la competencia comunicativa..."></textarea>
+            </div>
+            <div class="form-group">
+              <label>Competencia Investigativa</label>
+              <textarea rows="2" placeholder="Describe la competencia investigativa..."></textarea>
+            </div>
+            <div class="form-group">
+              <label>Competencia Ciudadana</label>
+              <textarea rows="2" placeholder="Describe la competencia ciudadana..."></textarea>
+            </div>
+            <div class="form-group">
+              <label>Competencia Tecnológica</label>
+              <textarea rows="2" placeholder="Describe la competencia tecnológica..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><i class='bx bx-table'></i> Unidades Temáticas y Resultados de Aprendizaje</div>
+          <div class="competencia-list" id="comp-list">
+            <div class="competencia-row">
+              <input type="text" placeholder="Unidad Temática" value="Introducción al Cálculo">
+              <input type="text" placeholder="Resultado de Aprendizaje" value="Comprende límites y continuidad">
+              <button class="btn-icon btn-sm" onclick="this.closest('.competencia-row').remove()"><i class='bx bx-trash'></i></button>
+            </div>
+            <div class="competencia-row">
+              <input type="text" placeholder="Unidad Temática" value="Derivadas">
+              <input type="text" placeholder="Resultado de Aprendizaje" value="Aplica reglas de derivación">
+              <button class="btn-icon btn-sm" onclick="this.closest('.competencia-row').remove()"><i class='bx bx-trash'></i></button>
+            </div>
+          </div>
+          <button class="btn btn-secondary btn-sm" onclick="addCompetencia()"><i class='bx bx-plus'></i> Agregar Unidad</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TAB: ESTRATEGIAS ── -->
+    <div class="tab-panel" id="tab-pedagogia">
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title"><i class='bx bx-brain'></i> Estrategias Pedagógicas</div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Estrategia de Enseñanza Principal</label>
+              <select>
+                <option>Clase Magistral</option>
+                <option>Aprendizaje Basado en Proyectos</option>
+                <option>Aprendizaje Basado en Problemas</option>
+                <option>Aula Invertida (Flipped Classroom)</option>
+                <option>Seminario-Taller</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Estrategias Complementarias</label>
+              <textarea rows="3" placeholder="Ej: Talleres en laboratorio, trabajo colaborativo, simulaciones..."></textarea>
+            </div>
+            <div class="form-group">
+              <label>Recursos Didácticos</label>
+              <textarea rows="3" placeholder="Ej: Plataforma Moodle, proyector, kits de laboratorio..."></textarea>
+            </div>
+            <div class="form-group">
+              <label>Ambientes de Aprendizaje</label>
+              <textarea rows="3" placeholder="Aula de clase, laboratorio de cómputo, campo de práctica..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><i class='bx bx-time'></i> Distribución de Horas</div>
+          <div class="form-grid">
+            <div class="form-group"><label>Horas Presenciales / semana</label><input type="number" value="4"></div>
+            <div class="form-group"><label>Horas Trabajo Independiente / semana</label><input type="number" value="6"></div>
+            <div class="form-group"><label>Horas de Tutoría</label><input type="number" value="1"></div>
+            <div class="form-group"><label>Total Horas Semestre</label><input type="number" value="160" readonly style="background:rgba(16,185,129,0.06);"></div>
+          </div>
+          <hr class="divider">
+          <div class="card-title"><i class='bx bx-world'></i> Transversalidad</div>
+          <div class="form-group">
+            <label>Relación con otras Asignaturas</label>
+            <textarea rows="3" placeholder="¿Con qué materias se articula este microcurrículo?"></textarea>
+          </div>
+          <div class="form-group mt-16">
+            <label>Proyección Social / Vínculo con el Entorno</label>
+            <textarea rows="3" placeholder="Relación con el sector productivo o comunidad..."></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

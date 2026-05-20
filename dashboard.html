@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — Sistema Académico</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
+  <link href="https://cdn.boxicons.com/3.0.8/fonts/filled/boxicons-filled.min.css" rel="stylesheet">
+  <script src="js/dashboard.js" defer></script>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-text">Sistema Académico</div>
+    <div class="logo-sub">Plataforma de Gestión</div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section">Principal</div>
+    <a class="nav-item active" href="dashboard.html"><i class='bx bx-grid-alt'></i> Dashboard</a>
+
+    <div class="nav-section">Administración</div>
+    <a class="nav-item" href="vistas/usuarios.html"><i class='bx bx-group'></i> Usuarios</a>
+    <a class="nav-item" href="vistas/academico.html"><i class='bx bx-building-house'></i> Estructura Académica</a>
+    <a class="nav-item" href="vistas/curriculo.html"><i class='bx bx-book-open'></i> Microcurrículo</a>
+
+    <div class="nav-section">Control</div>
+    <a class="nav-item" href="vistas/asistencia.html">
+      <i class='bx bx-scan'></i> Asistencia &amp; Sensores
+      <span class="nav-badge">LIVE</span>
+    </a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="user-avatar">AD</div>
+    <div class="user-info">
+      <div class="user-name">Administrador</div>
+      <div class="user-role">Super Admin</div>
+    </div>
+    <button class="btn-logout" title="Cerrar sesión" onclick="location.href='index.html'">
+      <i class='bx bx-log-out'></i>
+    </button>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main-content">
+  <header class="topbar">
+    <span class="topbar-title">Panel <span>Principal</span></span>
+    <div class="topbar-actions">
+      <button class="btn-icon" title="Notificaciones"><i class='bx bx-bell'></i></button>
+      <button class="btn-icon" title="Configuración"><i class='bx bx-cog'></i></button>
+    </div>
+  </header>
+
+  <div class="page-body">
+    <div class="page-header">
+      <h2>Bienvenido de vuelta</h2>
+      <p>Resumen del sistema académico · <span id="fecha-hoy"></span></p>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-grid">
+      <div class="stat-card green">
+        <div class="stat-icon"><i class='bx bx-buildings'></i></div>
+        <div class="stat-value">4</div>
+        <div class="stat-label">Facultades Registradas</div>
+        <div class="stat-trend up"><i class='bx bx-trending-up'></i> 12 programas activos</div>
+      </div>
+      <div class="stat-card gold">
+        <div class="stat-icon"><i class='bx bx-book'></i></div>
+        <div class="stat-value">12</div>
+        <div class="stat-label">Programas Académicos</div>
+        <div class="stat-trend up"><i class='bx bx-trending-up'></i> 3 nuevos este semestre</div>
+      </div>
+      <div class="stat-card blue">
+        <div class="stat-icon"><i class='bx bx-user-check'></i></div>
+        <div class="stat-value">847</div>
+        <div class="stat-label">Estudiantes Activos</div>
+        <div class="stat-trend up"><i class='bx bx-trending-up'></i> +34 este período</div>
+      </div>
+      <div class="stat-card rose">
+        <div class="stat-icon"><i class='bx bx-chalkboard'></i></div>
+        <div class="stat-value">62</div>
+        <div class="stat-label">Docentes Vinculados</div>
+        <div class="stat-trend down"><i class='bx bx-trending-down'></i> 2 pendientes de firma</div>
+      </div>
+    </div>
+
+    <!-- ACCIONES RÁPIDAS -->
+    <div class="section-header">
+      <h3><i class='bx bx-zap'></i> Acciones Rápidas</h3>
+    </div>
+    <div class="quick-actions">
+      <a class="qa-btn" href="vistas/usuarios.html?tab=docentes">
+        <div class="qa-icon"><i class='bx bx-chalkboard'></i></div>
+        <span>Gestionar Docente</span>
+      </a>
+      <a class="qa-btn" href="vistas/usuarios.html?tab=estudiantes">
+        <div class="qa-icon"><i class='bx bx-user-plus'></i></div>
+        <span>Gestionar Estudiante</span>
+      </a>
+      <a class="qa-btn" href="vistas/asistencia.html?manual=true">
+        <div class="qa-icon"><i class='bx bx-edit'></i></div>
+        <span>Registrar Asistencia Manual</span>
+      </a>
+      <a class="qa-btn" href="vistas/academico.html">
+        <div class="qa-icon"><i class='bx bx-building-house'></i></div>
+        <span>Gestionar Facultades</span>
+      </a>
+      <a class="qa-btn" href="vistas/curriculo.html">
+        <div class="qa-icon"><i class='bx bx-book-open'></i></div>
+        <span>Ver Microcurrículos</span>
+      </a>
+      <a class="qa-btn" href="vistas/asistencia.html">
+        <div class="qa-icon"><i class='bx bx-scan'></i></div>
+        <span>Estado de Sensores</span>
+      </a>
+    </div>
+
+    <!-- BOTTOM GRID -->
+    <div class="bottom-grid">
+      <!-- HORARIO DEL DÍA -->
+      <div class="card">
+        <div class="card-title"><i class='bx bx-calendar-week'></i> Carga Académica del Día</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Hora</th>
+                <th>Materia</th>
+                <th>Docente</th>
+                <th>Grupo</th>
+                <th>Aula</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="time-col">07:00 – 09:00</td>
+                <td><div class="subj-name">Cálculo Diferencial</div><div class="subj-room">Ing. de Sistemas</div></td>
+                <td>Dr. Martínez</td>
+                <td>IS-301</td>
+                <td>A-204</td>
+                <td><span class="badge badge-green">En curso</span></td>
+              </tr>
+              <tr>
+                <td class="time-col">09:00 – 11:00</td>
+                <td><div class="subj-name">Programación Web</div><div class="subj-room">Ing. de Sistemas</div></td>
+                <td>Ing. Ramírez</td>
+                <td>IS-401</td>
+                <td>Lab-B2</td>
+                <td><span class="badge badge-green">En curso</span></td>
+              </tr>
+              <tr>
+                <td class="time-col">11:00 – 13:00</td>
+                <td><div class="subj-name">Gestión Empresarial</div><div class="subj-room">Administración</div></td>
+                <td>Mg. Torres</td>
+                <td>AD-201</td>
+                <td>B-105</td>
+                <td><span class="badge badge-gold">Próxima</span></td>
+              </tr>
+              <tr>
+                <td class="time-col">14:00 – 16:00</td>
+                <td><div class="subj-name">Anatomía I</div><div class="subj-room">Enfermería</div></td>
+                <td>Dra. Herrera</td>
+                <td>EN-101</td>
+                <td>C-302</td>
+                <td><span class="badge badge-muted">Pendiente</span></td>
+              </tr>
+              <tr>
+                <td class="time-col">16:00 – 18:00</td>
+                <td><div class="subj-name">Derecho Civil</div><div class="subj-room">Derecho</div></td>
+                <td>Dr. Palencia</td>
+                <td>DE-301</td>
+                <td>A-101</td>
+                <td><span class="badge badge-muted">Pendiente</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ACTIVIDAD RECIENTE -->
+      <div class="card">
+        <div class="card-title"><i class='bx bx-time-five'></i> Actividad Reciente</div>
+        <div class="activity-list">
+          <div class="activity-item">
+            <div class="status-dot online"></div>
+            <div class="activity-text">Sensor <strong>S-001</strong> detectó asistencia en Aula A-204</div>
+            <div class="activity-time">Hace 5 min</div>
+          </div>
+          <div class="activity-item">
+            <div class="status-dot" style="background:#60a5fa"></div>
+            <div class="activity-text">Nuevo estudiante <strong>registrado</strong> en IS-401</div>
+            <div class="activity-time">Hace 18 min</div>
+          </div>
+          <div class="activity-item">
+            <div class="status-dot" style="background:var(--gold)"></div>
+            <div class="activity-text">Microcurrículo de <strong>Programación Web</strong> actualizado</div>
+            <div class="activity-time">Hace 1 h</div>
+          </div>
+          <div class="activity-item">
+            <div class="status-dot online"></div>
+            <div class="activity-text">Sensor <strong>S-003</strong> en Aula Lab-B2 conectado</div>
+            <div class="activity-time">Hace 2 h</div>
+          </div>
+          <div class="activity-item">
+            <div class="status-dot" style="background:var(--rose)"></div>
+            <div class="activity-text">Sensor <strong>S-005</strong> sin señal (Aula C-302)</div>
+            <div class="activity-time">Hace 3 h</div>
+          </div>
+          <div class="activity-item">
+            <div class="status-dot" style="background:#60a5fa"></div>
+            <div class="activity-text">Nuevo coordinador asignado a <strong>Facultad de Derecho</strong></div>
+            <div class="activity-time">Hace 4 h</div>
+          </div>
+        </div>
+        <hr class="divider">
+        <a href="vistas/asistencia.html" class="btn btn-secondary btn-sm full-width" style="justify-content:center;">
+          <i class='bx bx-history'></i> Ver historial completo
+        </a>
+      </div>
+    </div>
+
+  </div><!-- /page-body -->
+</div><!-- /main-content -->
+
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asistencia & Sensores — Sistema Académico</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/style_asistencia.css">
+  <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
+  <link href="https://cdn.boxicons.com/3.0.8/fonts/filled/boxicons-filled.min.css" rel="stylesheet">
+  <script src="../js/asistencia.js"></script>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-text">Sistema Académico</div>
+    <div class="logo-sub">Plataforma de Gestión</div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section">Principal</div>
+    <a class="nav-item" href="../dashboard.html"><i class='bx bx-grid-alt'></i> Dashboard</a>
+    <div class="nav-section">Administración</div>
+    <a class="nav-item" href="usuarios.html"><i class='bx bx-group'></i> Usuarios</a>
+    <a class="nav-item" href="academico.html"><i class='bx bx-building-house'></i> Estructura Académica</a>
+    <a class="nav-item" href="curriculo.html"><i class='bx bx-book-open'></i> Microcurrículo</a>
+    <div class="nav-section">Control</div>
+    <a class="nav-item active" href="asistencia.html"><i class='bx bx-scan'></i> Asistencia &amp; Sensores <span class="nav-badge">LIVE</span></a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="user-avatar">AD</div>
+    <div class="user-info"><div class="user-name">Administrador</div><div class="user-role">Super Admin</div></div>
+    <button class="btn-logout" onclick="location.href='../index.html'"><i class='bx bx-log-out'></i></button>
+  </div>
+</aside>
+
+<div class="main-content">
+  <header class="topbar">
+    <span class="topbar-title">Asistencia <span>&amp; Sensores</span></span>
+    <div class="topbar-actions">
+      <span class="live-badge">EN VIVO</span>
+      <button class="btn-icon" id="btn-sim" title="Simular lectura de sensor" onclick="simularDeteccion()"><i class='bx bx-radio-circle-marked'></i></button>
+      <button class="btn-icon"><i class='bx bx-bell'></i></button>
+    </div>
+  </header>
+
+  <div class="page-body">
+    <div class="page-header">
+      <h2>Control de Asistencia</h2>
+      <p>Monitoreo en tiempo real de sensores y registro de asistencias.</p>
+    </div>
+
+    <!-- ESTADO DE SENSORES -->
+    <div class="section-header">
+      <h3><i class='bx bx-wifi'></i> Estado de Sensores</h3>
+      <div class="flex gap-8">
+        <span class="badge badge-green"><span class="status-dot online"></span> 3 Online</span>
+        <span class="badge badge-rose"><span class="status-dot offline"></span> 1 Offline</span>
+        <span class="badge badge-gold"><span class="status-dot idle"></span> 1 Inactivo</span>
+      </div>
+    </div>
+    <div class="sensor-grid">
+      <div class="sensor-card">
+        <div class="sensor-icon online"><i class='bx bx-broadcast'></i></div>
+        <div class="sensor-info">
+          <div class="s-code">S-001</div>
+          <div class="s-aula">Aula A-204 · Sede Norte</div>
+          <div class="s-last"><span class="status-dot online"></span> Online · última lectura 2 min</div>
+        </div>
+      </div>
+      <div class="sensor-card">
+        <div class="sensor-icon online"><i class='bx bx-broadcast'></i></div>
+        <div class="sensor-info">
+          <div class="s-code">S-002</div>
+          <div class="s-aula">Aula Lab-B2 · Sede Norte</div>
+          <div class="s-last"><span class="status-dot online"></span> Online · última lectura 5 min</div>
+        </div>
+      </div>
+      <div class="sensor-card">
+        <div class="sensor-icon online"><i class='bx bx-broadcast'></i></div>
+        <div class="sensor-info">
+          <div class="s-code">S-003</div>
+          <div class="s-aula">Aula B-105 · Sede Norte</div>
+          <div class="s-last"><span class="status-dot online"></span> Online · última lectura 8 min</div>
+        </div>
+      </div>
+      <div class="sensor-card">
+        <div class="sensor-icon offline"><i class='bx bx-wifi-off'></i></div>
+        <div class="sensor-info">
+          <div class="s-code">S-004</div>
+          <div class="s-aula">Aula C-302 · Sede Sur</div>
+          <div class="s-last"><span class="status-dot offline"></span> Sin señal · hace 3 h</div>
+        </div>
+      </div>
+      <div class="sensor-card">
+        <div class="sensor-icon idle"><i class='bx bx-pause-circle'></i></div>
+        <div class="sensor-info">
+          <div class="s-code">S-005</div>
+          <div class="s-aula">Aula A-101 · Sede Norte</div>
+          <div class="s-last"><span class="status-dot idle"></span> Inactivo · fuera de horario</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REGISTRO MANUAL -->
+    <div class="manual-form" id="manual-form">
+      <div class="section-header" style="margin-bottom:14px;">
+        <h3><i class='bx bx-edit'></i> Registro Manual de Asistencia</h3>
+        <span class="badge badge-gold">Sin sensor</span>
+      </div>
+      <div class="flex gap-16" style="flex-wrap:wrap;">
+        <div class="form-group" style="flex:1;min-width:140px;"><label>Identificación</label><input type="text" placeholder="CC / TI del estudiante"></div>
+        <div class="form-group" style="flex:1;min-width:140px;"><label>Materia / Grupo</label>
+          <select><option>-- Seleccionar --</option><option>IS-301 · Cálculo Diferencial</option><option>IS-401 · Programación Web</option><option>AD-201 · Gestión Empresarial</option></select>
+        </div>
+        <div class="form-group" style="flex:1;min-width:120px;"><label>Fecha</label><input type="date" id="manual-fecha"></div>
+        <div class="form-group" style="flex:1;min-width:100px;"><label>Hora</label><input type="time" id="manual-hora"></div>
+        <div class="form-group" style="flex:1;min-width:120px;"><label>Estado</label>
+          <select><option>Presente</option><option>Tardanza</option><option>Justificada</option></select>
+        </div>
+        <div class="form-group" style="flex:0 0 auto;display:flex;align-items:flex-end;">
+          <button class="btn btn-primary" onclick="registrarManual()"><i class='bx bx-check'></i> Registrar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- REGISTRO EN TIEMPO REAL -->
+    <div class="card" style="margin-bottom:24px;">
+      <div class="section-header">
+        <h3><i class='bx bx-time-five'></i> Registro en Tiempo Real</h3>
+        <span class="live-badge">EN VIVO</span>
+      </div>
+      <p class="text-muted" style="margin-bottom:14px;font-size:0.8rem;">
+        <i class='bx bx-info-circle'></i> Los registros aparecen automáticamente cuando el sensor detecta una tarjeta. Puedes simular con el botón <i class='bx bx-radio-circle-marked'></i>.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>#</th><th>Identificación</th><th>Nombre</th><th>Apellido</th><th>Materia / Grupo</th><th>Sensor</th><th>Hora</th><th>Estado</th></tr>
+          </thead>
+          <tbody id="live-tbody">
+            <tr>
+              <td class="text-muted">1</td>
+              <td class="text-em">CC-10201</td>
+              <td>Valeria</td>
+              <td>Suárez</td>
+              <td>IS-301 · Cálculo</td>
+              <td>S-001</td>
+              <td class="time-col" style="font-family:'Crimson Pro',serif;color:var(--emerald);">07:03</td>
+              <td><span class="badge badge-green">Presente</span></td>
+            </tr>
+            <tr>
+              <td class="text-muted">2</td>
+              <td class="text-em">TI-55123</td>
+              <td>Camila</td>
+              <td>Herrera</td>
+              <td>IS-301 · Cálculo</td>
+              <td>S-001</td>
+              <td class="time-col" style="font-family:'Crimson Pro',serif;color:var(--emerald);">07:11</td>
+              <td><span class="badge badge-gold">Tardanza</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- HISTORIAL -->
+    <div class="card">
+      <div class="section-header">
+        <h3><i class='bx bx-history'></i> Historial de Asistencias</h3>
+        <button class="btn btn-secondary btn-sm"><i class='bx bx-download'></i> Exportar</button>
+      </div>
+      <div class="filter-bar">
+        <div class="form-group"><label>Desde</label><input type="date"></div>
+        <div class="form-group"><label>Hasta</label><input type="date"></div>
+        <div class="form-group"><label>Sede</label>
+          <select><option>Todas las sedes</option><option>Sede Norte</option><option>Sede Sur</option></select>
+        </div>
+        <div class="form-group"><label>Grupo</label>
+          <select><option>Todos los grupos</option><option>IS-301</option><option>IS-401</option><option>AD-201</option><option>EN-101</option></select>
+        </div>
+        <div class="form-group"><label>Estado</label>
+          <select><option>Todos</option><option>Presente</option><option>Tardanza</option><option>Ausente</option><option>Justificada</option></select>
+        </div>
+        <div style="display:flex;align-items:flex-end;">
+          <button class="btn btn-primary"><i class='bx bx-filter'></i> Filtrar</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Fecha</th><th>Identificación</th><th>Nombre</th><th>Materia</th><th>Grupo</th><th>Sede</th><th>Sensor</th><th>Hora</th><th>Estado</th></tr>
+          </thead>
+          <tbody id="historial-tbody">
+            <tr>
+              <td>20/05/2026</td><td class="text-em">CC-10201</td><td>Valeria Suárez</td>
+              <td>Cálculo Diferencial</td><td>IS-301</td><td>Norte</td><td>S-001</td>
+              <td style="font-family:'Crimson Pro',serif;color:var(--emerald);">07:03</td>
+              <td><span class="badge badge-green">Presente</span></td>
+            </tr>
+            <tr>
+              <td>20/05/2026</td><td class="text-em">CC-10345</td><td>Sebastián Ramos</td>
+              <td>Cálculo Diferencial</td><td>IS-301</td><td>Norte</td><td>S-001</td>
+              <td style="font-family:'Crimson Pro',serif;color:var(--emerald);">07:05</td>
+              <td><span class="badge badge-green">Presente</span></td>
+            </tr>
+            <tr>
+              <td>19/05/2026</td><td class="text-em">TI-55123</td><td>Camila Herrera</td>
+              <td>Programación Web</td><td>IS-401</td><td>Norte</td><td>S-002</td>
+              <td style="font-family:'Crimson Pro',serif;color:var(--gold);">09:18</td>
+              <td><span class="badge badge-gold">Tardanza</span></td>
+            </tr>
+            <tr>
+              <td>19/05/2026</td><td class="text-em">CC-10201</td><td>Valeria Suárez</td>
+              <td>Programación Web</td><td>IS-401</td><td>Norte</td><td>S-002</td>
+              <td style="font-family:'Crimson Pro',serif;color:var(--rose);">—</td>
+              <td><span class="badge badge-rose">Ausente</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

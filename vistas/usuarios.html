@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Usuarios — Sistema Académico</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/style_usuarios.css">
+  <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
+  <link href="https://cdn.boxicons.com/3.0.8/fonts/filled/boxicons-filled.min.css" rel="stylesheet">
+  <script src="../js/usuarios.js" defer></script>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-text">Sistema Académico</div>
+    <div class="logo-sub">Plataforma de Gestión</div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section">Principal</div>
+    <a class="nav-item" href="../dashboard.html"><i class='bx bx-grid-alt'></i> Dashboard</a>
+    <div class="nav-section">Administración</div>
+    <a class="nav-item active" href="usuarios.html"><i class='bx bx-group'></i> Usuarios</a>
+    <a class="nav-item" href="academico.html"><i class='bx bx-building-house'></i> Estructura Académica</a>
+    <a class="nav-item" href="curriculo.html"><i class='bx bx-book-open'></i> Microcurrículo</a>
+    <div class="nav-section">Control</div>
+    <a class="nav-item" href="asistencia.html"><i class='bx bx-scan'></i> Asistencia &amp; Sensores <span class="nav-badge">LIVE</span></a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="user-avatar">AD</div>
+    <div class="user-info"><div class="user-name">Administrador</div><div class="user-role">Super Admin</div></div>
+    <button class="btn-logout" onclick="location.href='../index.html'"><i class='bx bx-log-out'></i></button>
+  </div>
+</aside>
+
+<div class="main-content">
+  <header class="topbar">
+    <span class="topbar-title">Gestión de <span>Usuarios</span></span>
+    <div class="topbar-actions">
+      <button class="btn-icon"><i class='bx bx-bell'></i></button>
+      <button class="btn-icon"><i class='bx bx-cog'></i></button>
+    </div>
+  </header>
+
+  <div class="page-body">
+    <div class="page-header">
+      <h2>Gestión de Usuarios</h2>
+      <p>Administra administradores, coordinadores, docentes y estudiantes del sistema.</p>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs-bar">
+      <button class="tab-btn active" onclick="switchTab('admins',this)"><i class='bx bx-shield'></i> Administradores</button>
+      <button class="tab-btn" onclick="switchTab('coordinadores',this)"><i class='bx bx-briefcase'></i> Coordinadores</button>
+      <button class="tab-btn" onclick="switchTab('docentes',this)"><i class='bx bx-chalkboard'></i> Docentes</button>
+      <button class="tab-btn" onclick="switchTab('estudiantes',this)"><i class='bx bx-user-graduate'></i> Estudiantes</button>
+    </div>
+
+    <!-- ── TAB: ADMINISTRADORES ── -->
+    <div class="tab-panel active" id="tab-admins">
+      <div class="grid-2">
+        <!-- Formulario -->
+        <div>
+          <div class="form-section">
+            <div class="form-section-title"><i class='bx bx-plus-circle'></i> Registrar Administrador</div>
+            <div class="form-grid form-grid-2">
+              <div class="form-group"><label>Nombre</label><input type="text" placeholder="Ej: Carlos"></div>
+              <div class="form-group"><label>Apellido</label><input type="text" placeholder="Ej: López"></div>
+              <div class="form-group"><label>Correo Electrónico</label><input type="email" placeholder="correo@institución.edu.co"></div>
+              <div class="form-group"><label>Celular</label><input type="text" placeholder="+57 300 000 0000"></div>
+              <div class="form-group"><label>Usuario</label><input type="text" placeholder="c.lopez"></div>
+              <div class="form-group"><label>Contraseña</label><input type="password" placeholder="••••••••"></div>
+              <div class="form-group"><label>Cargo</label>
+                <select>
+                  <option>Super Administrador</option>
+                  <option>Administrador de Sede</option>
+                  <option>Secretaría</option>
+                </select>
+              </div>
+              <div class="form-group"><label>Estado</label>
+                <select><option>Activo</option><option>Inactivo</option></select>
+              </div>
+            </div>
+            <div class="action-row">
+              <button class="btn btn-secondary btn-sm"><i class='bx bx-x'></i> Limpiar</button>
+              <button class="btn btn-primary btn-sm"><i class='bx bx-save'></i> Guardar</button>
+            </div>
+          </div>
+        </div>
+        <!-- Listado -->
+        <div class="card">
+          <div class="section-header">
+            <h3><i class='bx bx-list-ul'></i> Administradores</h3>
+            <div class="search-bar"><i class='bx bx-search'></i><input type="text" placeholder="Buscar..."></div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Nombre</th><th>Correo</th><th>Cargo</th><th>Estado</th><th></th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><strong>Carlos López</strong></td>
+                  <td class="text-muted">c.lopez@inst.edu.co</td>
+                  <td>Super Admin</td>
+                  <td><span class="badge badge-green">Activo</span></td>
+                  <td><div class="user-row-actions"><button class="btn-icon btn-sm"><i class='bx bx-edit'></i></button><button class="btn-icon btn-sm"><i class='bx bx-trash'></i></button></div></td>
+                </tr>
+                <tr>
+                  <td><strong>María Gómez</strong></td>
+                  <td class="text-muted">m.gomez@inst.edu.co</td>
+                  <td>Secretaría</td>
+                  <td><span class="badge badge-green">Activo</span></td>
+                  <td><div class="user-row-actions"><button class="btn-icon btn-sm"><i class='bx bx-edit'></i></button><button class="btn-icon btn-sm"><i class='bx bx-trash'></i></button></div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TAB: COORDINADORES ── -->
+    <div class="tab-panel" id="tab-coordinadores">
+      <div class="grid-2">
+        <div>
+          <div class="form-section">
+            <div class="form-section-title"><i class='bx bx-plus-circle'></i> Registrar Coordinador</div>
+            <div class="form-grid form-grid-2">
+              <div class="form-group"><label>ID Coordinador</label><input type="text" placeholder="COO-001"></div>
+              <div class="form-group"><label>Nombre Completo</label><input type="text" placeholder="Nombre y apellido"></div>
+              <div class="form-group"><label>Correo</label><input type="email" placeholder="coordinador@inst.edu.co"></div>
+              <div class="form-group"><label>Celular</label><input type="text" placeholder="+57 310 000 0000"></div>
+              <div class="form-group"><label>Programa Asignado</label>
+                <select>
+                  <option>-- Seleccionar Programa --</option>
+                  <option>Ingeniería de Sistemas</option>
+                  <option>Administración de Empresas</option>
+                  <option>Derecho</option>
+                  <option>Enfermería</option>
+                  <option>Contaduría Pública</option>
+                </select>
+              </div>
+              <div class="form-group"><label>Facultad</label>
+                <select>
+                  <option>-- Seleccionar Facultad --</option>
+                  <option>Facultad de Ingeniería</option>
+                  <option>Facultad de Ciencias Económicas</option>
+                  <option>Facultad de Ciencias de la Salud</option>
+                  <option>Facultad de Derecho</option>
+                </select>
+              </div>
+            </div>
+            <div class="action-row">
+              <button class="btn btn-secondary btn-sm">Limpiar</button>
+              <button class="btn btn-primary btn-sm"><i class='bx bx-save'></i> Guardar</button>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="section-header">
+            <h3><i class='bx bx-list-ul'></i> Coordinadores</h3>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>ID</th><th>Nombre</th><th>Programa</th><th>Estado</th><th></th></tr></thead>
+              <tbody>
+                <tr>
+                  <td class="text-em">COO-001</td>
+                  <td><strong>Ana Torres</strong></td>
+                  <td>Ing. de Sistemas</td>
+                  <td><span class="badge badge-green">Activo</span></td>
+                  <td><button class="btn-icon btn-sm"><i class='bx bx-edit'></i></button></td>
+                </tr>
+                <tr>
+                  <td class="text-em">COO-002</td>
+                  <td><strong>Luis Pedraza</strong></td>
+                  <td>Derecho</td>
+                  <td><span class="badge badge-green">Activo</span></td>
+                  <td><button class="btn-icon btn-sm"><i class='bx bx-edit'></i></button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TAB: DOCENTES ── -->
+    <div class="tab-panel" id="tab-docentes">
+      <div class="grid-2">
+        <div>
+          <div class="form-section">
+            <div class="form-section-title"><i class='bx bx-plus-circle'></i> Registrar Docente</div>
+            <div class="form-grid form-grid-2">
+              <div class="form-group"><label>Nombre</label><input type="text" placeholder="Nombre"></div>
+              <div class="form-group"><label>Apellido</label><input type="text" placeholder="Apellido"></div>
+              <div class="form-group"><label>Identificación</label><input type="text" placeholder="CC / Pasaporte"></div>
+              <div class="form-group"><label>Correo</label><input type="email" placeholder="docente@inst.edu.co"></div>
+              <div class="form-group"><label>Celular</label><input type="text" placeholder="+57 300 000 0000"></div>
+              <div class="form-group"><label>Tipo de Contrato</label>
+                <select><option>Tiempo Completo</option><option>Medio Tiempo</option><option>Catedrático</option></select>
+              </div>
+              <div class="form-group"><label>Título</label><input type="text" placeholder="Ej: Mg. en Educación"></div>
+              <div class="form-group"><label>Área de Conocimiento</label><input type="text" placeholder="Ej: Ingeniería"></div>
+            </div>
+            <div class="action-row">
+              <button class="btn btn-secondary btn-sm">Limpiar</button>
+              <button class="btn btn-primary btn-sm"><i class='bx bx-save'></i> Guardar</button>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="section-header">
+            <h3><i class='bx bx-list-ul'></i> Listado de Docentes</h3>
+            <div class="search-bar"><i class='bx bx-search'></i><input type="text" placeholder="Buscar..."></div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Nombre</th><th>Área</th><th>Contrato</th><th>Calificaciones</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><strong>Dr. José Martínez</strong><br><span class="text-muted" style="font-size:.75rem">CC 1234567</span></td>
+                  <td>Matemáticas</td>
+                  <td><span class="badge badge-blue">T. Completo</span></td>
+                  <td><a href="curriculo.html" class="btn btn-secondary btn-sm"><i class='bx bx-bar-chart'></i> Gestionar</a></td>
+                </tr>
+                <tr>
+                  <td><strong>Ing. Laura Ramírez</strong><br><span class="text-muted" style="font-size:.75rem">CC 7654321</span></td>
+                  <td>Sistemas</td>
+                  <td><span class="badge badge-gold">Cátedra</span></td>
+                  <td><a href="curriculo.html" class="btn btn-secondary btn-sm"><i class='bx bx-bar-chart'></i> Gestionar</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TAB: ESTUDIANTES ── -->
+    <div class="tab-panel" id="tab-estudiantes">
+      <div class="form-section">
+        <div class="form-section-title"><i class='bx bx-plus-circle'></i> Registrar Estudiante</div>
+        <div class="form-grid form-grid-3">
+          <div class="form-group"><label>Nombre</label><input type="text" placeholder="Nombre"></div>
+          <div class="form-group"><label>Apellido</label><input type="text" placeholder="Apellido"></div>
+          <div class="form-group"><label>No. Identificación</label><input type="text" placeholder="CC / TI"></div>
+          <div class="form-group"><label>Correo</label><input type="email" placeholder="estudiante@correo.com"></div>
+          <div class="form-group"><label>Celular</label><input type="text" placeholder="+57 300 000 0000"></div>
+          <div class="form-group"><label>Fecha de Nacimiento</label><input type="date"></div>
+          <div class="form-group"><label>Programa</label>
+            <select>
+              <option>-- Seleccionar --</option>
+              <option>Ing. de Sistemas</option>
+              <option>Administración de Empresas</option>
+              <option>Derecho</option>
+              <option>Enfermería</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Semestre</label>
+            <select><option>I</option><option>II</option><option>III</option><option>IV</option><option>V</option><option>VI</option><option>VII</option><option>VIII</option><option>IX</option><option>X</option></select>
+          </div>
+          <div class="form-group"><label>Estado Matrícula</label>
+            <select><option>Activo</option><option>Inactivo</option><option>Suspendido</option></select>
+          </div>
+        </div>
+        <hr class="divider">
+        <div class="form-section-title"><i class='bx bx-file'></i> Datos Socioeconómicos</div>
+        <div class="form-grid form-grid-3">
+          <div class="form-group icfes-field">
+            <label>Puntaje ICFES</label>
+            <input type="number" placeholder="Ej: 320">
+            <span class="icfes-badge">/ 500</span>
+          </div>
+          <div class="form-group"><label>SISBEN</label>
+            <select>
+              <option>-- Nivel --</option>
+              <option>A1 – A5</option>
+              <option>B1 – B7</option>
+              <option>C1 – C18</option>
+              <option>No aplica</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Estrato Socioeconómico</label>
+            <select><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select>
+          </div>
+        </div>
+        <hr class="divider">
+        <div class="form-section-title"><i class='bx bx-user'></i> Datos del Acudiente</div>
+        <div class="form-grid form-grid-3">
+          <div class="form-group"><label>Nombre Acudiente</label><input type="text" placeholder="Nombre completo"></div>
+          <div class="form-group"><label>Parentesco</label>
+            <select><option>Padre</option><option>Madre</option><option>Tutor Legal</option><option>Otro</option></select>
+          </div>
+          <div class="form-group"><label>Celular Acudiente</label><input type="text" placeholder="+57 300 000 0000"></div>
+          <div class="form-group"><label>Correo Acudiente</label><input type="email" placeholder="acudiente@correo.com"></div>
+          <div class="form-group"><label>Dirección</label><input type="text" placeholder="Calle 00 # 00 - 00"></div>
+          <div class="form-group"><label>Ciudad</label><input type="text" placeholder="Barranquilla"></div>
+        </div>
+        <div class="action-row">
+          <button class="btn btn-secondary btn-sm">Limpiar</button>
+          <button class="btn btn-primary btn-sm"><i class='bx bx-save'></i> Registrar Estudiante</button>
+        </div>
+      </div>
+
+      <!-- Listado estudiantes -->
+      <div class="card">
+        <div class="section-header">
+          <h3><i class='bx bx-list-ul'></i> Estudiantes Registrados</h3>
+          <div class="flex gap-8">
+            <div class="search-bar"><i class='bx bx-search'></i><input type="text" placeholder="Buscar por nombre o ID..."></div>
+            <select style="padding:8px 12px;background:var(--card-bg);border:1px solid var(--border);border-radius:8px;color:var(--text-main);font-family:'DM Sans',sans-serif;">
+              <option>Todos los programas</option>
+              <option>Ing. de Sistemas</option>
+              <option>Derecho</option>
+              <option>Enfermería</option>
+            </select>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>ID</th><th>Nombre</th><th>Programa</th><th>Semestre</th><th>ICFES</th><th>SISBEN</th><th>Estado</th><th></th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-em">CC-10201</td>
+                <td><strong>Valeria Suárez</strong></td>
+                <td>Ing. de Sistemas</td>
+                <td>IV</td>
+                <td>348</td>
+                <td><span class="badge badge-green">A3</span></td>
+                <td><span class="badge badge-green">Activo</span></td>
+                <td><div class="user-row-actions"><button class="btn-icon btn-sm"><i class='bx bx-edit'></i></button><button class="btn-icon btn-sm"><i class='bx bx-show'></i></button></div></td>
+              </tr>
+              <tr>
+                <td class="text-em">CC-10345</td>
+                <td><strong>Sebastián Ramos</strong></td>
+                <td>Derecho</td>
+                <td>II</td>
+                <td>302</td>
+                <td><span class="badge badge-gold">B2</span></td>
+                <td><span class="badge badge-green">Activo</span></td>
+                <td><div class="user-row-actions"><button class="btn-icon btn-sm"><i class='bx bx-edit'></i></button><button class="btn-icon btn-sm"><i class='bx bx-show'></i></button></div></td>
+              </tr>
+              <tr>
+                <td class="text-em">TI-55123</td>
+                <td><strong>Camila Herrera</strong></td>
+                <td>Enfermería</td>
+                <td>I</td>
+                <td>291</td>
+                <td><span class="badge badge-muted">C5</span></td>
+                <td><span class="badge badge-rose">Inactivo</span></td>
+                <td><div class="user-row-actions"><button class="btn-icon btn-sm"><i class='bx bx-edit'></i></button><button class="btn-icon btn-sm"><i class='bx bx-show'></i></button></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
