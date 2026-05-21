@@ -47,3 +47,11 @@ document.getElementById('manual-hora').value = now.toTimeString().slice(0,5);
 if (new URLSearchParams(location.search).get('manual') === 'true') {
   document.getElementById('manual-form').scrollIntoView({ behavior:'smooth' });
 }
+
+  function toggleUserMenu() {
+    document.getElementById('sidebarUser').classList.toggle('open');
+  }
+  document.addEventListener('click', function(e) {
+    const su = document.getElementById('sidebarUser');
+    if (su && !su.contains(e.target)) su.classList.remove('open');
+  });

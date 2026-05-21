@@ -4,3 +4,11 @@ function switchTab(id, el) {
   document.getElementById('tab-' + id).classList.add('active');
   el.classList.add('active');
 }
+
+  function toggleUserMenu() {
+    document.getElementById('sidebarUser').classList.toggle('open');
+  }
+  document.addEventListener('click', function(e) {
+    const su = document.getElementById('sidebarUser');
+    if (su && !su.contains(e.target)) su.classList.remove('open');
+  });

@@ -12,3 +12,11 @@ if (tab) {
   const btn = [...document.querySelectorAll('.tab-btn')].find(b => b.getAttribute('onclick').includes(tab));
   if (btn) btn.click();
 }
+
+  function toggleUserMenu() {
+    document.getElementById('sidebarUser').classList.toggle('open');
+  }
+  document.addEventListener('click', function(e) {
+    const su = document.getElementById('sidebarUser');
+    if (su && !su.contains(e.target)) su.classList.remove('open');
+  });

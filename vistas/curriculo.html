@@ -28,10 +28,20 @@
     <div class="nav-section">Control</div>
     <a class="nav-item" href="asistencia.html"><i class='bx bx-scan'></i> Asistencia &amp; Sensores <span class="nav-badge">LIVE</span></a>
   </nav>
-  <div class="sidebar-footer">
-    <div class="user-avatar">AD</div>
-    <div class="user-info"><div class="user-name">Administrador</div><div class="user-role">Super Admin</div></div>
-    <button class="btn-logout" onclick="location.href='../index.html'"><i class='bx bx-log-out'></i></button>
+  <div class="sidebar-user" id="sidebarUser">
+    <div class="user-toggle" onclick="toggleUserMenu()">
+      <div class="user-avatar">AD</div>
+      <div class="user-info">
+        <div class="user-name">Administrador</div>
+        <div class="user-role">Super Admin</div>
+      </div>
+      <i class='bx bx-chevron-up user-chevron'></i>
+    </div>
+    <div class="user-dropdown">
+      <a href="#" class="dropdown-item"><i class='bx bx-user-circle'></i> Mi perfil</a>
+      <a href="#" class="dropdown-item"><i class='bx bx-cog'></i> Configuración</a>
+      <a href="../index.html" class="dropdown-item logout" onclick="return confirm('¿Cerrar sesión?')"><i class='bx bx-log-out'></i> Cerrar sesión</a>
+    </div>
   </div>
 </aside>
 

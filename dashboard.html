@@ -33,15 +33,20 @@
       <span class="nav-badge">LIVE</span>
     </a>
   </nav>
-  <div class="sidebar-footer">
-    <div class="user-avatar">AD</div>
-    <div class="user-info">
-      <div class="user-name">Administrador</div>
-      <div class="user-role">Super Admin</div>
+  <div class="sidebar-user" id="sidebarUser">
+    <div class="user-toggle" onclick="toggleUserMenu()">
+      <div class="user-avatar">AD</div>
+      <div class="user-info">
+        <div class="user-name">Administrador</div>
+        <div class="user-role">Super Admin</div>
+      </div>
+      <i class='bx bx-chevron-up user-chevron'></i>
     </div>
-    <button class="btn-logout" title="Cerrar sesión" onclick="location.href='index.html'">
-      <i class='bx bx-log-out'></i>
-    </button>
+    <div class="user-dropdown">
+      <a href="#" class="dropdown-item"><i class='bx bx-user-circle'></i> Mi perfil</a>
+      <a href="#" class="dropdown-item"><i class='bx bx-cog'></i> Configuración</a>
+      <a href="index.html" class="dropdown-item logout" onclick="return confirm('¿Cerrar sesión?')"><i class='bx bx-log-out'></i> Cerrar sesión</a>
+    </div>
   </div>
 </aside>
 
@@ -88,38 +93,6 @@
         <div class="stat-trend down"><i class='bx bx-trending-down'></i> 2 pendientes de firma</div>
       </div>
     </div>
-
-    <!-- ACCIONES RÁPIDAS -->
-    <div class="section-header">
-      <h3><i class='bx bx-zap'></i> Acciones Rápidas</h3>
-    </div>
-    <div class="quick-actions">
-      <a class="qa-btn" href="vistas/usuarios.html?tab=docentes">
-        <div class="qa-icon"><i class='bx bx-chalkboard'></i></div>
-        <span>Gestionar Docente</span>
-      </a>
-      <a class="qa-btn" href="vistas/usuarios.html?tab=estudiantes">
-        <div class="qa-icon"><i class='bx bx-user-plus'></i></div>
-        <span>Gestionar Estudiante</span>
-      </a>
-      <a class="qa-btn" href="vistas/asistencia.html?manual=true">
-        <div class="qa-icon"><i class='bx bx-edit'></i></div>
-        <span>Registrar Asistencia Manual</span>
-      </a>
-      <a class="qa-btn" href="vistas/academico.html">
-        <div class="qa-icon"><i class='bx bx-building-house'></i></div>
-        <span>Gestionar Facultades</span>
-      </a>
-      <a class="qa-btn" href="vistas/curriculo.html">
-        <div class="qa-icon"><i class='bx bx-book-open'></i></div>
-        <span>Ver Microcurrículos</span>
-      </a>
-      <a class="qa-btn" href="vistas/asistencia.html">
-        <div class="qa-icon"><i class='bx bx-scan'></i></div>
-        <span>Estado de Sensores</span>
-      </a>
-    </div>
-
     <!-- BOTTOM GRID -->
     <div class="bottom-grid">
       <!-- HORARIO DEL DÍA -->
@@ -227,6 +200,5 @@
 
   </div><!-- /page-body -->
 </div><!-- /main-content -->
-
 </body>
 </html>

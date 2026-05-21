@@ -10,45 +10,70 @@
     flex-direction: column; 
     align-items: center; 
     justify-content: center;
-    gap: 10px; 
+    gap: 12px; 
     padding: 24px 16px;
-    background: var(--card-bg); 
-    border: 1px solid var(--border);
+    background: #ffffff;
+    border: 1.5px solid #BFDBFE;
     border-radius: var(--radius); 
     cursor: pointer;
     text-decoration: none;
     color: var(--text-main); 
-    transition: all 0.25s;
+    transition: all 0.22s;
+    position: relative;
+    overflow: hidden;
+}
+
+.qa-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-l));
+    opacity: 0;
+    transition: opacity 0.22s;
 }
 
 .qa-btn:hover { 
-    border-color: var(--emerald); 
-    transform: translateY(-2px); 
-    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    border-color: var(--primary-l); 
+    transform: translateY(-3px); 
+    box-shadow: 0 8px 24px rgba(59,130,246,0.14);
+    background: #EFF6FF;
 }
+
+.qa-btn:hover::before { opacity: 1; }
 
 .qa-btn:hover .qa-icon { 
-    background: rgba(16,185,129,0.18); 
-    color: var(--emerald-l);
+    background: #DBEAFE;
+    color: var(--primary);
+    transform: scale(1.08);
 }
 
+/* Acento naranja en el 3ro (Asistencia Manual) */
+.qa-btn:nth-child(3) { border-color: #FED7AA; }
+.qa-btn:nth-child(3):hover { border-color: var(--accent); background: #FFF7ED; box-shadow: 0 8px 24px rgba(249,115,22,0.13); }
+.qa-btn:nth-child(3):hover::before { background: linear-gradient(90deg, var(--accent), var(--accent-l)); }
+.qa-btn:nth-child(3):hover .qa-icon { background: #FFEDD5; color: var(--accent); }
+.qa-btn:nth-child(3) .qa-icon { background: #FFF7ED; color: var(--accent-l); }
+
 .qa-icon {
-    width: 48px; 
-    height: 48px; 
-    border-radius: 12px;
-    background: rgba(255,255,255,0.06);
+    width: 52px; 
+    height: 52px; 
+    border-radius: 14px;
+    background: #EFF6FF;
+    color: var(--primary);
     display: flex; 
     align-items: center; 
     justify-content: center;
-    font-size: 1.4rem; 
-    transition: all 0.25s;
+    font-size: 1.5rem;
+    transition: all 0.22s;
 }
 
 .qa-btn span { 
-    font-size: 0.8rem; 
-    font-weight: 500; 
+    font-size: 0.82rem; 
+    font-weight: 600;
     text-align: center; 
-    color: var(--text-muted); 
+    color: var(--text-main);
+    line-height: 1.3;
 }
 
 .schedule-table thead th:first-child { 
@@ -58,12 +83,13 @@
 .time-col { 
     font-family: 'Crimson Pro', serif; 
     font-weight: 600; 
-    color: var(--emerald); 
+    color: var(--primary); 
     white-space: nowrap; 
 }
 
 .subj-name { 
-    font-weight: 500; 
+    font-weight: 500;
+    color: var(--text-main);
 }
 
 .subj-room { 
@@ -85,11 +111,13 @@
 }
 
 .activity-dot {
-      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 6px;
-    }
+    width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 6px;
+}
+
 .activity-text { 
     flex: 1; 
-    font-size: 0.85rem; 
+    font-size: 0.85rem;
+    color: var(--text-main);
 }
 
 .activity-time { 
